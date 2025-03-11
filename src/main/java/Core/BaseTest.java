@@ -36,11 +36,11 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-    @AfterClass
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
-    }
+//    @AfterClass
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//            driver = null;
+//        }
+//    }
 }
