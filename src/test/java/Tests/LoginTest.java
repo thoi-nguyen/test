@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
     // Generate random data to user
     Faker faker = new Faker();
-    String baseUrl = "https://ctflearn.com";
     String user_name = faker.name().firstName()+ faker.name().lastName();
     String password = faker.internet().password();
     String email = faker.internet().emailAddress();
@@ -27,7 +26,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void AC1_Sign_Up_Account() {
         SignUpPage signUpPage = new SignUpPage(getDriver());
-        getDriver().get(baseUrl);
+        getDriver().get(getBaseUrl());
         signUpPage.signUp(user_name, email, password);
         System.out.println("User Name: " + user_name);
         System.out.println("Password: " + password);
@@ -36,7 +35,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void AC2_Create_Challenge() {
         ChallengePage challengePage = new ChallengePage(getDriver());
-        getDriver().get(baseUrl);
+        getDriver().get(getBaseUrl());
         challengePage.navigateToCreateChallenge();
         challengePage.createChallenge(title, flag, file, description, howtosolve);
         challengePage.viewMyChallenge(user_name, title);

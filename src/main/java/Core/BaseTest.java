@@ -10,10 +10,12 @@ import org.testng.annotations.Parameters;
 
 public class BaseTest {
     private WebDriver driver;
+    private ConfigReader configReader;
     protected WebDriver getDriver() {
         return driver;
     }
     public BaseTest() {
+        configReader = new ConfigReader();
     }
 
     @BeforeClass
@@ -36,11 +38,17 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-//    @AfterClass
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//            driver = null;
-//        }
-//    }
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
+
+    protected String getBaseUrl() {
+        String environment = System.getProperty("env", "dev"); // Default to "dev" if not specified
+        return configReader.getBaseUrl(environment);
+    }
+
 }
