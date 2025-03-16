@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
@@ -35,7 +36,9 @@ public class BaseTest {
         switch (browser.toLowerCase()) {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", driverPath);
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis());
+                driver = new ChromeDriver(options);
                 break;
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", driverPath);
