@@ -2,11 +2,12 @@ name: Run Selenium Tests
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        stage: "staging"
+        qa: "qa"
+        dev: "dev"
 
 jobs:
   build:
@@ -42,7 +43,7 @@ jobs:
           echo "DRIVER_PATH=/usr/bin/chromedriver" >> $GITHUB_ENV
 
       - name: Build and run tests
-        run: mvn test -Denv=staging
+        run: mvn test -Denv=${{ inputs.environment }}
 
 #      - name: Archive Extent Report
 #        uses: actions/upload-artifact@v3
