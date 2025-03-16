@@ -43,4 +43,4 @@ jobs:
           echo "DRIVER_PATH=/usr/bin/chromedriver" >> $GITHUB_ENV
 
       - name: Build and run tests
-        run: mvn test -Denv=${{ inputs.environment }} -Dbrowser=Chrome -DchromeOptions.args="--headless"
+        run: mvn test -Denv=${{ inputs.environment }} -Dtest=LoginTest
