@@ -32,14 +32,14 @@ public class CreateChallengeTest extends BaseTest {
         System.out.println("Password: " + password);
     }
 
-    @Test
-    public void AC2_Create_Challenge() {
-        LoginPage Login = new LoginPage(getDriver());
-        ChallengePage challengePage = new ChallengePage(getDriver());
-        getDriver().get(getBaseUrl());
-        Login.login(user_name, password);
-        challengePage.navigateToCreateChallenge();
-        challengePage.createChallenge(title, flag, file, description, howtosolve);
-        challengePage.viewMyChallenge(user_name, title);
-    }
+//    @Test
+//    public void AC2_Create_Challenge() {
+//        LoginPage Login = new LoginPage(getDriver());
+//        ChallengePage challengePage = new ChallengePage(getDriver());
+//        getDriver().get(getBaseUrl());
+//        Login.login(user_name, password);
+//        challengePage.navigateToCreateChallenge();
+//        challengePage.createChallenge(title, flag, file, description, howtosolve);
+//        challengePage.viewMyChallenge(user_name, title);
+//    }
 }

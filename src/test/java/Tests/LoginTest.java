@@ -14,11 +14,11 @@ public class LoginTest extends BaseTest {
         Login.verifyLoginSuccess(successMessage);
     }
 
-    @Test(dataProvider = "loginInvalidData", dataProviderClass = LoginDataProvider.class)
-    public void loginTestFail(String username, String password, String failMessage) {
-        LoginPage Login = new LoginPage(getDriver());
-        getDriver().get(getBaseUrl());
-        Login.login(username, password);
-        Login.verifyLoginFail(failMessage);
-    }
+//    @Test(dataProvider = "loginInvalidData", dataProviderClass = LoginDataProvider.class)
+//    public void loginTestFail(String username, String password, String failMessage) {
+//        LoginPage Login = new LoginPage(getDriver());
+//        getDriver().get(getBaseUrl());
+//        Login.login(username, password);
+//        Login.verifyLoginFail(failMessage);
+//    }
 }

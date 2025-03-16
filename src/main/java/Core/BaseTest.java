@@ -48,7 +48,9 @@ public class BaseTest {
             driver.quit();
             driver = null;
         }
-        test.log(Status.INFO, "Test Done");
+        if (test != null) {
+            test.log(Status.INFO, "Test Done");
+        }
         extent.flush();
     }
 

@@ -10,7 +10,7 @@ public class ExtentManager {
         if (extent == null) {
             extent = new ExtentReports();
 
-            ExtentSparkReporter sparkReporter = new ExtentSparkReporter("extent-report.html");
+            ExtentSparkReporter sparkReporter = new ExtentSparkReporter( "extent-report.html");
             sparkReporter.config().setReportName("Test Automation Report");
             sparkReporter.config().setDocumentTitle("Test Report");
             sparkReporter.config().setTheme(com.aventstack.extentreports.reporter.configuration.Theme.STANDARD);
@@ -19,11 +19,12 @@ public class ExtentManager {
             sparkReporter.config().setEncoding("utf-8");
 
             extent.attachReporter(sparkReporter);
+//            return extent;
             // Set system information
-            extent.setSystemInfo("OS", "Windows 10");
-            extent.setSystemInfo("Browsers", "Chrome, Edge, Firefox");
-            extent.setSystemInfo("Author", "ChienPM");
-            extent.setSystemInfo("Test Suite", "ChienPM_Selenium_FinalTest_1");
+//            extent.setSystemInfo("OS", "Windows 10");
+//            extent.setSystemInfo("Browsers", "Chrome, Edge, Firefox");
+//            extent.setSystemInfo("Author", "ChienPM");
+//            extent.setSystemInfo("Test Suite", "ChienPM_Selenium_FinalTest_1");
         }
         return extent;
     }
