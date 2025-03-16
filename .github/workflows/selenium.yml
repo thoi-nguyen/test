@@ -5,9 +5,12 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        stage: "staging"
-        qa: "qa"
-        dev: "dev"
+        description: "Select the environment"
+        default: "staging"
+        options:
+          - staging
+          - qa
+          - dev
 
 jobs:
   build:
@@ -39,11 +42,12 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo "BROWSER=chrome" >> $GITHUB_ENV
-          echo "DRIVER_PATH=/usr/bin/chromedriver" >> $GITHUB_ENV
+            echo "BROWSER=chrome" >> $GITHUB_ENV
+            echo "DRIVER_PATH=/usr/bin/chromedriver" >> $GITHUB_ENV
+            echo "USER_DATA_DIR=/tmp/chrome-user-data-${{ github.run_id }}" >> $GITHUB_ENV
 
       - name: Build and run tests
-        run: mvn test -Denv=${{ inputs.environment }}
+        run: mvn test -Denv=${{ inputs.environment }} -Dbrowser=Chrome -DchromeOptions.args="--user-data-dir=${{ env.USER_DATA_DIR }}"
 
 #      - name: Archive Extent Report
 #        uses: actions/upload-artifact@v3
