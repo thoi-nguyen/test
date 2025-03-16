@@ -37,7 +37,7 @@ public class BaseTest {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", driverPath);
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis());
+//                options.addArguments("--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis());
                 driver = new ChromeDriver(options);
                 break;
             case "firefox":
