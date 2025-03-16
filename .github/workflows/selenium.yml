@@ -45,7 +45,6 @@ jobs:
         run: mvn test -Denv=staging
 
       - name: Archive Extent Report
-        if: always()
         uses: actions/upload-artifact@v3
         with:
            name: extent-report
