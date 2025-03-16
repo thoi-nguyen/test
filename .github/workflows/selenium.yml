@@ -36,5 +36,10 @@ jobs:
         env:
           DISPLAY: :99
 
+      - name: Set environment variables
+        run: |
+          echo "BROWSER=chrome" >> $GITHUB_ENV
+          echo "DRIVER_PATH=/usr/bin/chromedriver" >> $GITHUB_ENV
+
       - name: Build and run tests
         run: mvn test -Denv=staging

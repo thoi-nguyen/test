@@ -23,12 +23,37 @@ public class BaseTest {
     }
 
     @BeforeMethod
-//    @Parameters("browser")
+    @Parameters("browser")
     public void setUp() {
-//        System.out.println("Browser: " + browser);
-        System.setProperty("webdriver.chrome.driver", "/Users/vanngocthanh/Downloads/chromedriver-mac-x64/chromedriver");
-        driver = new ChromeDriver();
+        String browser = System.getenv("BROWSER");
+        String driverPath = System.getenv("DRIVER_PATH");
+
+        if (browser == null || driverPath == null) {
+            throw new IllegalArgumentException("BROWSER and DRIVER_PATH environment variables must be set");
+        }
+
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", driverPath);
+                driver = new ChromeDriver();
+                break;
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver", driverPath);
+                driver = new FirefoxDriver();
+                break;
+            case "edge":
+                System.setProperty("webdriver.edge.driver", driverPath);
+                driver = new EdgeDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
+        }
         driver.get(getBaseUrl());
+        driver.manage().window().maximize();
+//        System.out.println("Browser: " + browser);
+//        System.setProperty("webdriver.chrome.driver", "/Users/vanngocthanh/Downloads/chromedriver-mac-x64/chromedriver");
+//        driver = new ChromeDriver();
+//        driver.get(getBaseUrl());
 //        if (browser.equalsIgnoreCase("chrome")) {
 //            System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
 //            driver = new ChromeDriver();
@@ -39,7 +64,7 @@ public class BaseTest {
 //            System.setProperty("webdriver.edge.driver", ".\\drivers\\msedgedriver.exe");
 //            driver = new EdgeDriver();
 //        }
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
     }
 
     @AfterMethod
