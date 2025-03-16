@@ -44,8 +44,8 @@ jobs:
       - name: Build and run tests
         run: mvn test -Denv=staging
 
-      - name: Archive Extent Report
-        uses: actions/upload-artifact@v3
-        with:
-           name: extent-report
-           path: extent-report.html
+#      - name: Archive Extent Report
+#        uses: actions/upload-artifact@v3
+#        with:
+#           name: extent-report
+#           path: extent-report.html
