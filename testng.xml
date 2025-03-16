@@ -4,7 +4,7 @@
 <!--    <test name="FirefoxTest">-->
 <!--&lt;!&ndash;        <parameter name="browser" value="firefox"/>&ndash;&gt;-->
 <!--        <classes>-->
-<!--            <class name="Tests.LoginTest"/>-->
+<!--            <class name="Tests.CreateChallengeTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
     <!--    <test name="FirefoxTest">-->
@@ -19,9 +19,15 @@
     <!--            <class name="tests.CuraHealthcareServiceTest"/>-->
     <!--        </classes>-->
     <!--    </test>-->
-    <test name="APITest">
+    <test name="FirefoxTest">
+        <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="API.Login"/>
+            <class name="Tests.LoginTest"/>
         </classes>
     </test>
+<!--    <test name="APITest">-->
+<!--        <classes>-->
+<!--            <class name="API.Login"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

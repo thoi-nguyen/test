@@ -1,15 +1,19 @@
 package Core;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+import utility.ExtentManager;
 
 public class BaseTest {
     private WebDriver driver;
+    ExtentReports extent = ExtentManager.createInstance();
+    ExtentTest test;
     private ConfigReader configReader;
     protected WebDriver getDriver() {
         return driver;
@@ -18,13 +22,13 @@ public class BaseTest {
         configReader = new ConfigReader();
     }
 
-    @BeforeClass
+    @BeforeMethod
 //    @Parameters("browser")
     public void setUp() {
 //        System.out.println("Browser: " + browser);
         System.setProperty("webdriver.chrome.driver", "/Users/vanngocthanh/Downloads/chromedriver-mac-x64/chromedriver");
         driver = new ChromeDriver();
-
+        driver.get(getBaseUrl());
 //        if (browser.equalsIgnoreCase("chrome")) {
 //            System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
 //            driver = new ChromeDriver();
@@ -38,12 +42,14 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
             driver = null;
         }
+        test.log(Status.INFO, "Test Done");
+        extent.flush();
     }
 
     protected String getBaseUrl() {

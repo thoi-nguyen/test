@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.testng.Assert.assertTrue;
+
 public class LoginPage extends BasePage {
     WebDriver driver;
     private WebDriverWait wait;
@@ -15,9 +17,12 @@ public class LoginPage extends BasePage {
     By usernameField = By.id("identifier");
     By passwordField = By.id("password");
     By loginButton = By.xpath("//button[text()='Login']");
+    By toastSuccessMsg = By.id("toast-1");
+    By incorrectCre = By.xpath("//*[@class='invalid-feedback']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         this.wait = new WebDriverWait(driver, 30);
     }
     public void login(String username, String password) {
@@ -28,18 +33,13 @@ public class LoginPage extends BasePage {
         driver.findElement(loginButton).click();
     }
 
-    public void navigateToLoginPage() {
-        driver.findElement(loginBtn).click();
-    }
-    public void enterUsername(String username) {
-        driver.findElement(usernameField).sendKeys(username);
+    public void verifyLoginSuccess(String successMessage){
+        wait.withTimeout(Duration.ofSeconds(15));
+        assertTrue(driver.findElement(toastSuccessMsg).getText().contains(successMessage));
     }
 
-    public void enterPassword(String password) {
-        driver.findElement(passwordField).sendKeys(password);
-    }
-
-    public void clickLogin() {
-        driver.findElement(loginButton).click();
+    public void verifyLoginFail(String failMessage){
+        wait.withTimeout(Duration.ofSeconds(15));
+        assertTrue(driver.findElement(incorrectCre).getText().contains(failMessage));
     }
 }
